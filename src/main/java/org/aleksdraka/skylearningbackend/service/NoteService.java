@@ -7,7 +7,6 @@ import org.aleksdraka.skylearningbackend.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class NoteService {
@@ -35,8 +34,7 @@ public class NoteService {
         return noteRepository.save(savedNote);
     }
 
-    // FIXME
-    public Optional<Note> deleteNote(Long id, Long noteId) {
-        return noteRepository.deleteBySectionIdAndNoteId(id, noteId);
+    public void deleteNote(Long noteId) {
+        noteRepository.deleteById(noteId);
     }
 }

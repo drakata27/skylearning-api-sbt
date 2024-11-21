@@ -10,5 +10,5 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     List<Note> findBySectionId(Long id);
 
     Optional<Note> findBySectionIdAndNoteId(Long id, Long noteId);
-    Optional<Note> deleteBySectionIdAndNoteId(Long id, Long noteId);
+    void deleteBySectionIdAndNoteId(Long id, Long noteId);
 }

@@ -26,7 +26,7 @@ public class SectionService {
     }
 
     public Section saveSection(Section section) {
-        return sectionRepository.save(section);
+    return sectionRepository.save(section);
     }
 
     public Section updateSection(@PathVariable Long id, Section newSection) {

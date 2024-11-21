@@ -18,7 +18,7 @@ public class Section {
     private String title;
     private String subtitle;
 
-    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "section", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Note> notes;
 
     public Section(String title, String subtitle) {

@@ -20,7 +20,7 @@ public class NoteController {
         return noteService.getAllNotes(id);
     }
 
-    @GetMapping("section/{id}/note/{noteId}")
+    @GetMapping("/section/{id}/note/{noteId}")
     public Note getNote(@PathVariable("id") Long id, @PathVariable("noteId") Long noteId) {
         return noteService.getNote(id, noteId);
     }
@@ -33,11 +33,7 @@ public class NoteController {
 
     @DeleteMapping("/section/{id}/note/{noteId}")
     public ResponseEntity<Note> deleteNote(@PathVariable Long id, @PathVariable Long noteId) {
-        try {
-            noteService.deleteNote(noteId, id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        noteService.deleteNote(noteId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
