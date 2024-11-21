@@ -1,13 +1,11 @@
 package org.aleksdraka.skylearningbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -19,6 +17,9 @@ public class Section {
     private Long id;
     private String title;
     private String subtitle;
+
+    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
+    private List<Note> notes;
 
     public Section(String title, String subtitle) {
         this.title = title;

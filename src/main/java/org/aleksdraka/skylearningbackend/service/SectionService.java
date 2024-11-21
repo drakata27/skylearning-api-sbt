@@ -19,8 +19,10 @@ public class SectionService {
         return sectionRepository.findAll();
     }
 
+    // FIXME
     public Section getSectionById(Long id) {
-        return sectionRepository.findById(id).orElseThrow(() -> new SectionNotFoundException(id));
+        return sectionRepository.findById(id)
+                .orElseThrow(() -> new SectionNotFoundException(id));
     }
 
     public Section saveSection(Section section) {
@@ -38,7 +40,7 @@ public class SectionService {
     }
 
     public void deleteSection(@PathVariable Long id) {
-        sectionRepository.deleteById(id);
+            sectionRepository.deleteById(id);
     }
 
 }
