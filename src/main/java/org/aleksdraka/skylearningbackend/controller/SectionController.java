@@ -2,6 +2,8 @@ package org.aleksdraka.skylearningbackend.controller;
 
 import org.aleksdraka.skylearningbackend.model.Section;
 import org.aleksdraka.skylearningbackend.service.SectionService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,18 +24,20 @@ public class SectionController {
         return sectionService.getSectionById(id);
     }
 
-    @PostMapping("/section")
-    public Section createSection(@RequestBody Section section) {
-        return sectionService.saveSection(section);
-    }
-
     @PutMapping("/section/{id}")
     public Section updateSection(@PathVariable Long id,  @RequestBody Section section) {
         return sectionService.updateSection(id, section);
     }
 
+    @PostMapping("/section")
+    public ResponseEntity<Section> createSection(@RequestBody Section section) {
+        sectionService.saveSection(section);
+        return new ResponseEntity<>(section, HttpStatus.CREATED);
+    }
+
     @DeleteMapping("/section/{id}")
-    public void deleteSection(@PathVariable Long id) {
+    public ResponseEntity<Section> deleteSection(@PathVariable Long id) {
         sectionService.deleteSection(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

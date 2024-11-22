@@ -25,6 +25,11 @@ public class NoteController {
         return noteService.getNote(id, noteId);
     }
 
+    @PutMapping("/section/{id}/note/{noteId}")
+    public Note updateNote(@PathVariable Long id, @PathVariable Long noteId, @RequestBody Note note) {
+        return noteService.updateNote(id, noteId, note);
+    }
+
     @PostMapping("/section/{id}/note")
     public ResponseEntity<Note> createNote(@RequestBody Note note, @PathVariable Long id) {
         Note savedNote = noteService.saveNote(note, id);

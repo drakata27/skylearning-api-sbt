@@ -25,8 +25,8 @@ public class SectionService {
                 .orElseThrow(() -> new SectionNotFoundException(id));
     }
 
-    public Section saveSection(Section section) {
-    return sectionRepository.save(section);
+    public void saveSection(Section section) {
+        sectionRepository.save(section);
     }
 
     public Section updateSection(@PathVariable Long id, Section newSection) {

@@ -27,6 +27,16 @@ public class NoteService {
                 .orElseThrow(() -> new NoteNotFoundException(id, noteId));
     }
 
+    public Note updateNote(Long id, Long noteId, Note newNote) {
+        return noteRepository.findById(noteId)
+                .map(note -> {
+                    note.setTitle(newNote.getTitle());
+                    note.setContent(newNote.getContent());
+                    return noteRepository.save(note);
+                })
+                .orElseGet(()-> noteRepository.save(newNote));
+    }
+
     public Note saveNote(Note note, Long id) {
         Section section = sectionService.getSectionById(id);
         note.setSection(section);
