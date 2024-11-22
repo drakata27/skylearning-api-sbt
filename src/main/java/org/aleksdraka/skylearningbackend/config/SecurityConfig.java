@@ -16,7 +16,15 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests.anyRequest().permitAll());
+                        authorizeRequests.anyRequest().authenticated())
+                .oauth2Login(oauth2Login ->
+                oauth2Login.defaultSuccessUrl("http://localhost:3000", true))
+                .logout(logout ->
+                        logout
+                                .logoutUrl("/oauth/logout")
+                                .logoutSuccessUrl("http://localhost:3000")
+                                .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID"));
         return http.build();
     }
 }
