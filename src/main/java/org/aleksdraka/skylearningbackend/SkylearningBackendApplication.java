@@ -9,5 +9,4 @@ public class SkylearningBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(SkylearningBackendApplication.class, args);
     }
-
 }

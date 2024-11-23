@@ -18,11 +18,16 @@ public class Section {
     private String title;
     private String subtitle;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
     @OneToMany(mappedBy = "section", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Note> notes;
 
-    public Section(String title, String subtitle) {
+    public Section(String title, String subtitle, User owner) {
         this.title = title;
         this.subtitle = subtitle;
+        this.owner = owner;
     }
 }

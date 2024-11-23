@@ -6,12 +6,14 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
@@ -19,7 +21,7 @@ public class SecurityConfig {
                         authorizeRequests.anyRequest().authenticated())
 //                        authorizeRequests.anyRequest().permitAll())
                 .oauth2Login(oauth2Login ->
-                oauth2Login.defaultSuccessUrl("http://localhost:3000", true))
+                    oauth2Login.defaultSuccessUrl("http://localhost:3000", true))
                 .logout(logout ->
                         logout
                                 .logoutUrl("/oauth/logout")
