@@ -11,6 +11,7 @@ import java.util.Map;
 public class UserController {
     @GetMapping("/user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
+        System.out.println(principal);
         return principal.getAttributes();
     }
 }
