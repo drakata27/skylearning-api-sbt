@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class SectionController {
     private final SectionService sectionService;
     public SectionController(SectionService sectionService) {
@@ -30,7 +29,6 @@ public class SectionController {
         return sectionService.updateSection(id, section);
     }
 
-    @CrossOrigin
     @PostMapping("/section")
     public ResponseEntity<Section> createSection(@RequestBody Section section) {
         sectionService.saveSection(section);

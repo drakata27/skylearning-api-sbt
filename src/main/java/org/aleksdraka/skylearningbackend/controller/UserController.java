@@ -11,9 +11,6 @@ import java.util.Map;
 public class UserController {
     @GetMapping("/user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-        if (principal == null) {
-            throw new IllegalStateException("User is not authenticated");
-        }
         // TODO: Remove
         System.out.println(principal.getName());
         return principal.getAttributes();
