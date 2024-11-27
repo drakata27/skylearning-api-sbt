@@ -19,7 +19,6 @@ public class SectionService {
         return sectionRepository.findAll();
     }
 
-    // FIXME
     public Section getSectionById(Long id) {
         return sectionRepository.findById(id)
                 .orElseThrow(() -> new SectionNotFoundException(id));
