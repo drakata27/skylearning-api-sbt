@@ -35,11 +35,11 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow OPTIONS requests
-                        .requestMatchers(HttpMethod.GET, "/sections/**").permitAll() // Example: Public GET
-                        .requestMatchers(HttpMethod.POST, "/sections/**").authenticated() // Example: Require auth for POST
-                        .requestMatchers(HttpMethod.DELETE, "/sections/**").authenticated() // Require auth for DELETE
-                        .anyRequest().authenticated()) // Default: Authenticated
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/sections/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/sections/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/sections/**").authenticated()
+                        .anyRequest().authenticated())
                 .oauth2Login(oauth2Login ->
                         oauth2Login.defaultSuccessUrl("http://localhost:3000", true))
                 .logout(logout ->
@@ -48,7 +48,7 @@ public class SecurityConfig {
                                 .logoutSuccessUrl("http://localhost:3000")
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID"))
-                .cors(Customizer.withDefaults()); // Apply CORS settings
+                .cors(Customizer.withDefaults());
         return http.build();
     }
 }
