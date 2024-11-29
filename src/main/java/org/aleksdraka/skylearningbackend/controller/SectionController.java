@@ -4,6 +4,8 @@ import org.aleksdraka.skylearningbackend.model.Section;
 import org.aleksdraka.skylearningbackend.service.SectionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +16,10 @@ public class SectionController {
     public SectionController(SectionService sectionService) {
         this.sectionService = sectionService;
     }
+
     @GetMapping("/section")
-    public List<Section> getSections() {
-        return  sectionService.getAllSections();
+    public List<Section> getSections(@AuthenticationPrincipal OAuth2User principal) {
+        return  sectionService.getAllSections(principal);
     }
 
     @GetMapping("/section/{id}")

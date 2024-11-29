@@ -3,6 +3,8 @@ package org.aleksdraka.skylearningbackend.service;
 import org.aleksdraka.skylearningbackend.exception.SectionNotFoundException;
 import org.aleksdraka.skylearningbackend.model.Section;
 import org.aleksdraka.skylearningbackend.repository.SectionRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -15,8 +17,10 @@ public class SectionService {
         this.sectionRepository = sectionRepository;
     }
 
-    public List<Section> getAllSections() {
-        return sectionRepository.findAll();
+    public List<Section> getAllSections(@AuthenticationPrincipal OAuth2User principal) {
+//        return sectionRepository.findAll();
+        String userId = principal.getName();
+        return sectionRepository.findByUserId(userId);
     }
 
     public Section getSectionById(Long id) {
