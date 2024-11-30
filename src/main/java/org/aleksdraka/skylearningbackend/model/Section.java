@@ -18,11 +18,15 @@ public class Section {
     private String title;
     private String subtitle;
 
+    @Column(nullable = false) // Ensure this is required
+    private String userId;
+
     @OneToMany(mappedBy = "section", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Note> notes;
 
-    public Section(String title, String subtitle) {
+    public Section(String title, String subtitle, String userId) {
         this.title = title;
         this.subtitle = subtitle;
+        this.userId = userId;
     }
 }

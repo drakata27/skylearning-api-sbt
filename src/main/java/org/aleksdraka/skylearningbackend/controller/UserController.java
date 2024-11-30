@@ -12,7 +12,7 @@ public class UserController {
     @GetMapping("/user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
         // TODO: Remove
-        System.out.println(principal.getName());
+//        System.out.println(principal.getName());
         return principal.getAttributes();
     }
 }
