@@ -18,7 +18,7 @@ public class Section {
     private String title;
     private String subtitle;
 
-    @Column(nullable = false) // Ensure this is required
+    @Column(nullable = false)
     private String userId;
 
     @OneToMany(mappedBy = "section", orphanRemoval = true, cascade = CascadeType.ALL)
