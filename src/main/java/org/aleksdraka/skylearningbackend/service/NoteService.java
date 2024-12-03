@@ -39,6 +39,11 @@ public class NoteService {
 
     public Note saveNote(Note note, Long id) {
         Section section = sectionService.getSectionById(id);
+
+        if (note.getTitle() == null || note.getContent() == null) {
+            throw new IllegalArgumentException("Note title and content are required");
+        }
+
         note.setSection(section);
         Note savedNote = noteRepository.save(note);
         return noteRepository.save(savedNote);

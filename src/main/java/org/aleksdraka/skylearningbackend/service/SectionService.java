@@ -29,6 +29,9 @@ public class SectionService {
     }
 
     public void saveSection(Section section) {
+        if (section.getTitle() == null|| section.getSubtitle() == null) {
+            throw new IllegalArgumentException("Section title and subtitle cannot be empty");
+        }
         sectionRepository.save(section);
     }
 
