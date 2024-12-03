@@ -34,8 +34,12 @@ public class SectionController {
 
     @PostMapping("/section")
     public ResponseEntity<Section> createSection(@RequestBody Section section) {
-        sectionService.saveSection(section);
-        return new ResponseEntity<>(section, HttpStatus.CREATED);
+        try {
+            sectionService.saveSection(section);
+            return new ResponseEntity<>(section, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/section/{id}")

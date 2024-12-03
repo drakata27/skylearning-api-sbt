@@ -32,8 +32,12 @@ public class NoteController {
 
     @PostMapping("/section/{id}/note")
     public ResponseEntity<Note> createNote(@RequestBody Note note, @PathVariable Long id) {
-        Note savedNote = noteService.saveNote(note, id);
-        return new ResponseEntity<>(savedNote, HttpStatus.CREATED);
+        try {
+            Note savedNote = noteService.saveNote(note, id);
+            return new ResponseEntity<>(savedNote, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/section/{id}/note/{noteId}")
