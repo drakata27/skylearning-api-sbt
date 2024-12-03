@@ -15,7 +15,7 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(SectionService sectionService) {
         return _ -> {
-//            sectionService.saveSection(new Section("User ID Test","Google Account", "107411559235337526170"));
+//            sectionService.saveSection(new Section("User ID Test","Google Account", "6"));
 //            sectionService.saveSection(new Section("Java Notes","My notes"));
 //            sectionService.saveSection(new Section("Python Notes","Python Notes"));
 
