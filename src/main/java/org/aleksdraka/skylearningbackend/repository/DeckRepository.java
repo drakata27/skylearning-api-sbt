@@ -8,4 +8,6 @@ import java.util.List;
 public interface DeckRepository extends JpaRepository<Deck, Long> {
     List<Deck> findBySectionId(Long id);
 
+    Deck findBySectionIdAndDeckId(Long id, Long deckId);
+
 }
