@@ -24,6 +24,9 @@ public class Section {
     @OneToMany(mappedBy = "section", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Note> notes;
 
+    @OneToMany(mappedBy = "section", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Deck> decks;
+
     public Section(String title, String subtitle, String userId) {
         this.title = title;
         this.subtitle = subtitle;

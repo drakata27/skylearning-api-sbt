@@ -8,16 +8,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class LoadDatabase {
-//    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-    @Bean
+//    @Bean
     CommandLineRunner initDatabase(SectionService sectionService) {
         return _ -> {
-//            sectionService.saveSection(new Section("User ID Test","Google Account", "6"));
-//            sectionService.saveSection(new Section("Java Notes","My notes"));
-//            sectionService.saveSection(new Section("Python Notes","Python Notes"));
+            sectionService.saveSection(new Section("User ID Test","Google Account", "6"));
+            sectionService.saveSection(new Section("Java Notes","My notes", "2"));
+            sectionService.saveSection(new Section("Python Notes","Python Notes","2"));
 
 //            sectionService.getAllSections().forEach(section -> log.info("Preloaded {}", section));
         };
