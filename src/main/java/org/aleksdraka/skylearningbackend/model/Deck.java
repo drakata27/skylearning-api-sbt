@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -22,6 +24,9 @@ public class Deck {
     @JoinColumn(name = "section_id")
     @JsonBackReference
     private Section section;
+
+    @OneToMany(mappedBy = "deck", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<FlashCard> flashCards;
 
     public Deck(String name, String description) {
         this.name = name;
