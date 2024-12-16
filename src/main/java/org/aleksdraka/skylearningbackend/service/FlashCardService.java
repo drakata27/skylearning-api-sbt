@@ -21,6 +21,20 @@ public class FlashCardService {
         return flashCardRepository.findByDeckDeckId(deckId);
     }
 
+    public FlashCard getFlashCard(Long flashCardId) {
+        return flashCardRepository.findById(flashCardId).orElse(null);
+    }
+
+    public FlashCard updateFlashCard(Long cardId, FlashCard newFlashCard) {
+        return flashCardRepository.findById(cardId)
+                .map(flashCard -> {
+                    flashCard.setQuestion(newFlashCard.getQuestion());
+                    flashCard.setAnswer(newFlashCard.getAnswer());
+                    return flashCardRepository.save(flashCard);
+                })
+                .orElseGet(()-> flashCardRepository.save(newFlashCard));
+    }
+
     public FlashCard saveFlashCard(FlashCard flashCard, Long id, Long deckId) {
         Deck deck = deckService.getDeck(id, deckId);
 
@@ -31,5 +45,9 @@ public class FlashCardService {
         flashCard.setDeck(deck);
         FlashCard savedCard = flashCardRepository.save(flashCard);
         return flashCardRepository.save(savedCard);
+    }
+
+    public void deleteFlashCard(Long flashCardId) {
+        flashCardRepository.deleteById(flashCardId);
     }
 }
