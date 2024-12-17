@@ -1,7 +1,7 @@
 package org.aleksdraka.skylearningbackend.config;
 
-import org.aleksdraka.skylearningbackend.model.Section;
-import org.aleksdraka.skylearningbackend.service.SectionService;
+import org.aleksdraka.skylearningbackend.model.Profile;
+import org.aleksdraka.skylearningbackend.service.ProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -13,13 +13,17 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
 //    @Bean
-    CommandLineRunner initDatabase(SectionService sectionService) {
+    CommandLineRunner initDatabase(ProfileService profileService) {
         return _ -> {
-            sectionService.saveSection(new Section("User ID Test","Google Account", "6"));
-            sectionService.saveSection(new Section("Java Notes","My notes", "2"));
-            sectionService.saveSection(new Section("Python Notes","Python Notes","2"));
+            profileService.saveProfile(
+                    new Profile(
+                            1,
+                            "drakata",
+                            "Aleksandar Drakaliyski",
+                            "aleks.draka02@gmail.com" )
+            );
 
-//            sectionService.getAllSections().forEach(section -> log.info("Preloaded {}", section));
+//            profileService.getAllProfiles().forEach(profile -> log.info("Preloaded {}", profile));
         };
     }
 }
