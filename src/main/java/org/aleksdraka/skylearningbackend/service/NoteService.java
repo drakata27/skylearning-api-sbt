@@ -52,4 +52,8 @@ public class NoteService {
     public void deleteNote(Long noteId) {
         noteRepository.deleteById(noteId);
     }
+
+    public int countNotesBySectionId(Long sectionId) {
+        return noteRepository.countBySectionId(sectionId);
+    }
 }
