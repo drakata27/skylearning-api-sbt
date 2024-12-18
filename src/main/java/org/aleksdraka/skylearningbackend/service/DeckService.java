@@ -50,4 +50,8 @@ public class DeckService {
     public void deleteDeck(Long deckId) {
         deckRepository.deleteById(deckId);
     }
+
+    public int countDecksBySectionId(Long sectionId) {
+        return deckRepository.countBySectionId(sectionId);
+    }
 }
