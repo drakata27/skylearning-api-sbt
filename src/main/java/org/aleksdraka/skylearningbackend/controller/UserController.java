@@ -19,7 +19,15 @@ public class UserController {
 
     @GetMapping("/user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-        Integer profileId = (Integer) principal.getAttributes().getOrDefault("id", "N/A");
+        String profileId;
+        Object id =  principal.getAttributes().get("id");
+
+        if (id == null) {
+            profileId = (String) principal.getAttributes().get("sub");
+        } else {
+            profileId = id.toString();
+        }
+
         String username = (String) principal.getAttributes().getOrDefault("username", "N/A");
         String name = (String) principal.getAttributes().getOrDefault("name", "N/A");
         String email = (String) principal.getAttributes().getOrDefault("email", "N/A");

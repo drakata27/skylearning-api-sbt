@@ -17,7 +17,7 @@ public class LoadDatabase {
         return _ -> {
             profileService.saveProfile(
                     new Profile(
-                            1,
+                            "1",
                             "drakata",
                             "Aleksandar Drakaliyski",
                             "aleks.draka02@gmail.com" )
