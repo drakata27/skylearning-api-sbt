@@ -1,10 +1,8 @@
 package org.aleksdraka.skylearningbackend.controller;
 
 import org.aleksdraka.skylearningbackend.dto.SectionSummaryDTO;
-import org.aleksdraka.skylearningbackend.model.Deck;
 import org.aleksdraka.skylearningbackend.model.Section;
 import org.aleksdraka.skylearningbackend.service.DeckService;
-import org.aleksdraka.skylearningbackend.service.FlashCardService;
 import org.aleksdraka.skylearningbackend.service.NoteService;
 import org.aleksdraka.skylearningbackend.service.SectionService;
 import org.springframework.http.HttpStatus;
@@ -20,13 +18,11 @@ public class SectionController {
     private final SectionService sectionService;
     private final NoteService noteService;
     private final DeckService deckService;
-    private final FlashCardService flashCardService;
 
-    public SectionController(SectionService sectionService, NoteService noteService, DeckService deckService, FlashCardService flashCardService) {
+    public SectionController(SectionService sectionService, NoteService noteService, DeckService deckService) {
         this.sectionService = sectionService;
         this.noteService = noteService;
         this.deckService = deckService;
-        this.flashCardService = flashCardService;
     }
 
     @GetMapping("/section")

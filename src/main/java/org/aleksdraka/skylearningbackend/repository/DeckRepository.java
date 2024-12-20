@@ -10,4 +10,5 @@ public interface DeckRepository extends JpaRepository<Deck, Long> {
 
     Deck findBySectionIdAndDeckId(Long id, Long deckId);
     int countBySectionId(Long id);
+    int countByUserId(String userId);
 }

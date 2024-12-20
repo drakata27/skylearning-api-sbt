@@ -4,6 +4,8 @@ import org.aleksdraka.skylearningbackend.exception.NoteNotFoundException;
 import org.aleksdraka.skylearningbackend.model.Note;
 import org.aleksdraka.skylearningbackend.model.Section;
 import org.aleksdraka.skylearningbackend.repository.NoteRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,5 +57,10 @@ public class NoteService {
 
     public int countNotesBySectionId(Long sectionId) {
         return noteRepository.countBySectionId(sectionId);
+    }
+
+    public int getAllNotesSummary(@AuthenticationPrincipal OAuth2User principal) {
+        String userId = principal.getName();
+        return noteRepository.countByUserId(userId);
     }
 }

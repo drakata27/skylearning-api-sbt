@@ -18,7 +18,6 @@ public class SectionService {
     }
 
     public List<Section> getAllSections(@AuthenticationPrincipal OAuth2User principal) {
-//        return sectionRepository.findAll();
         String userId = principal.getName();
         return sectionRepository.findByUserId(userId);
     }
@@ -49,4 +48,8 @@ public class SectionService {
             sectionRepository.deleteById(id);
     }
 
+    public int getAllSectionsSummary(@AuthenticationPrincipal OAuth2User principal) {
+        String userId = principal.getName();
+        return sectionRepository.countByUserId(userId);
+    }
 }

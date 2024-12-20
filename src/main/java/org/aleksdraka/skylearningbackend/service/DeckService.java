@@ -3,6 +3,8 @@ package org.aleksdraka.skylearningbackend.service;
 import org.aleksdraka.skylearningbackend.model.Deck;
 import org.aleksdraka.skylearningbackend.model.Section;
 import org.aleksdraka.skylearningbackend.repository.DeckRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,5 +55,10 @@ public class DeckService {
 
     public int countDecksBySectionId(Long sectionId) {
         return deckRepository.countBySectionId(sectionId);
+    }
+
+    public int getAllDecksSummary(@AuthenticationPrincipal OAuth2User principal) {
+        String userId = principal.getName();
+        return deckRepository.countByUserId(userId);
     }
 }

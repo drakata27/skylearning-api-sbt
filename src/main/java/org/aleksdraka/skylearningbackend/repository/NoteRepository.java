@@ -12,4 +12,5 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     Optional<Note> findBySectionIdAndNoteId(Long id, Long noteId);
     void deleteBySectionIdAndNoteId(Long id, Long noteId);
     int countBySectionId(Long id);
+    int countByUserId(String userId);
 }

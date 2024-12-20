@@ -1,6 +1,7 @@
 package org.aleksdraka.skylearningbackend.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,10 +28,4 @@ public class Section {
 
     @OneToMany(mappedBy = "section", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Deck> decks;
-
-    public Section(String title, String subtitle, String userId) {
-        this.title = title;
-        this.subtitle = subtitle;
-        this.userId = userId;
-    }
 }
